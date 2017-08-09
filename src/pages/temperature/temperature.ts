@@ -17,7 +17,7 @@ export class TemperaturePage {
 
   }
 
-  ngOnInit(){
+  ionViewWillEnter(){
     this.selectedCity = this.weatherService.getSelectedCity();
     this.weatherService.getTemperatureForecast(this.selectedCity.id).subscribe(data => {
       console.log(data);

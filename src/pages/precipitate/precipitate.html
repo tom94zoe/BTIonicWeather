@@ -1,22 +1,16 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-          Percipitate
-      <span style="flex:1"></span>
-
-          <button ion-button icon-only (click)="openSettings()">
-            <ion-icon name="settings"></ion-icon>
-          </button>
-    </ion-title>
+    <ion-title>{{selectedCity.name}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+    <ion-list-header>Percipitate</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-left></ion-icon>
-      @ionicframework
+      <button ion-button>
+        <ion-icon name="settings"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>

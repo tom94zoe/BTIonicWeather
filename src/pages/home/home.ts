@@ -33,10 +33,9 @@ export class HomePage {
 
   selectCity(city:WeatherCity) {
     //console.log(this.navCtrl);
-
+    this.weatherService.setSelectedCity(city);
     this.navCtrl.parent.select(1);
     //this.navCtrl.push(TemperaturePage);
-    this.weatherService.setSelectedCity(city);
   }
 
   openSettings() {

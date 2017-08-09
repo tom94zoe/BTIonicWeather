@@ -20,7 +20,18 @@ export class WeatherServiceProvider {
   }
 
   getCities():Observable<Array<WeatherCity>>{
-    return this.http.get('cityListAustria.json').map(response => response.json());
+    return this.http.get('cityListAustria.json').map(response => {
+      var jsonRes = response.json();
+      this.preSelectedCity(jsonRes);
+      return jsonRes;
+    });
+  }
+
+  private preSelectedCity(possibleCities:Array<WeatherCity>){
+    var matchingCities = possibleCities.filter((city:WeatherCity) => city.name == 'Wien');
+    if(matchingCities.length > 0){
+      this.selectedCity = matchingCities[0];
+    }
   }
 
   setSelectedCity(city:WeatherCity): void{
