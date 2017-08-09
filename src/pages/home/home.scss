@@ -1,3 +1,18 @@
 page-home {
-
+  ion-label{
+    align-content: center;
+    align-items: center;
+    display: flex;
+  }
+  ion-list button[ion-button]{
+    padding: 0 1rem !important;
+  }
+  ion-header {
+    div {
+      display: flex;
+      h2 {
+        display: inline-block;
+      }
+    }
+  }
 }

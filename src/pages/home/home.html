@@ -1,4 +1,13 @@
 <ion-header>
+  <div>
+    <h2>
+      Hi <span [hidden]="!name">, {{name}}</span>
+    </h2>
+    <span style="flex:1"></span>
+    <button ion-button icon-only (click)="openSettings()">
+      <ion-icon name="settings"></ion-icon>
+    </button>
+  </div>
   <ion-searchbar (ionInput)="filterCities($event)"></ion-searchbar>
   <!--<ion-navbar>
     <ion-title>Home</ion-title>
@@ -6,9 +15,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let city of filteredCities">
-      <h4>{{city.name}} - {{city.country}}</h4>
+  <ion-list [virtualScroll]="filteredCities">
+    <ion-item *virtualItem="let city">
+      <label>{{city.name}} - {{city.country}}</label>
+      <span style="flex:1"></span>
+      <button ion-button icon-only (click)="selectCity(city)">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>

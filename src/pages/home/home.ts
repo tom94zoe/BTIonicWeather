@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, AlertController} from 'ionic-angular';
 import {WeatherServiceProvider} from '../../providers/weather-service/weather-service'
 import {WeatherCity} from "../../models/weather-city";
 @Component({
@@ -9,11 +9,12 @@ import {WeatherCity} from "../../models/weather-city";
 export class HomePage {
 
   cities:Array<WeatherCity>;
-  filteredCities:Array<WeatherCity>;
+  filteredCities:Array<WeatherCity> = [];
+  name:string;
 
-  constructor(public navCtrl:NavController, weatherService:WeatherServiceProvider) {
+  constructor(public navCtrl:NavController, private weatherService:WeatherServiceProvider, private alertCtrl:AlertController) {
 
-    weatherService.getCities().subscribe((cities:Array<WeatherCity>) => {
+    this.weatherService.getCities().subscribe((cities:Array<WeatherCity>) => {
       this.cities = cities;
       this.filterCities(null);
     });
@@ -21,7 +22,7 @@ export class HomePage {
 
   filterCities(event) {
     if (event === null || !event.target.value) {
-      this.filteredCities = this.cities
+      this.filteredCities = this.cities;
       return
     }
     this.filteredCities = this.cities.filter(city =>
@@ -30,5 +31,38 @@ export class HomePage {
     console.log(event);
   }
 
+  selectCity(city:WeatherCity) {
+    //console.log(this.navCtrl);
+
+    this.navCtrl.parent.select(1);
+    //this.navCtrl.push(TemperaturePage);
+    this.weatherService.setSelectedCity(city);
+  }
+
+  openSettings() {
+    let alert = this.alertCtrl.create({
+      title: 'Settings',
+      inputs: [{
+        name: 'name',
+        placeholder: 'Your Name'
+      },
+      ], buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.name = data.name;
+          }
+        }
+      ]
+    });
+    alert.present();
+
+  }
 
 }

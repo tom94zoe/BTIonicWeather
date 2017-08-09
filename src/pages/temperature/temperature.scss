@@ -1,0 +1,14 @@
+page-temperature {
+  ion-label{
+    align-content: center;
+    align-items: center;
+    display: flex;
+  }
+  span.customFlex{
+    flex:1;
+  }
+  label.celsius{
+    font-weight:700;
+    margin-right:4rem;
+  }
+}

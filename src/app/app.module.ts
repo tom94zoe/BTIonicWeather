@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { TemperaturePage } from '../pages/temperature/temperature';
+import { PercipitatePage } from '../pages/precipitate/precipitate';
+import { PercipitatePageSettings } from '../pages/precipitate/precipitate-settings';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -15,8 +16,9 @@ import { WeatherServiceProvider } from '../providers/weather-service/weather-ser
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    TemperaturePage,
+    PercipitatePage,
+    PercipitatePageSettings,
     HomePage,
     TabsPage
   ],
@@ -28,8 +30,9 @@ import { WeatherServiceProvider } from '../providers/weather-service/weather-ser
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
+    TemperaturePage,
+    PercipitatePage,
+    PercipitatePageSettings,
     HomePage,
     TabsPage
   ],

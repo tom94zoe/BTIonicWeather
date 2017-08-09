@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+import { TemperaturePage } from '../temperature/temperature';
+import { PercipitatePage } from '../precipitate/precipitate';
 import { HomePage } from '../home/home';
+import {WeatherServiceProvider} from "../../providers/weather-service/weather-service";
+import {WeatherCity} from "../../models/weather-city";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -10,10 +12,11 @@ import { HomePage } from '../home/home';
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
-
-  constructor() {
+  tab2Root = TemperaturePage;
+  tab3Root = PercipitatePage;
+  
+  constructor(private weahterService:WeatherServiceProvider) {
 
   }
+
 }

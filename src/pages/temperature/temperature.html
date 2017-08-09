@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{selectedCity.name}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-list  [virtualScroll]="weatherEntryList">
+  <ion-item *virtualItem="let weatherEntry">
+    <label>{{weatherEntry.date | date: 'MM/dd hh:mm' }}</label>
+    <span class="customFlex"></span>
+    <label class="celsius">{{weatherEntry.main.temp_celsius|number:'2.2-2'}}°</label>
+    <ion-img width="24px" height="24px" [src]="weatherEntry.weather[0].iconRef"></ion-img>
+  </ion-item>
+</ion-list>
+</ion-content>
