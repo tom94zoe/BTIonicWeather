@@ -3,6 +3,8 @@
  */
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {WeatherCity} from "../../models/weather-city";
+import {WeatherServiceProvider} from "../../providers/weather-service/weather-service";
 
 @Component({
   selector: 'page-percipitate-settings',
@@ -10,8 +12,12 @@ import { NavController } from 'ionic-angular';
 })
 export class PercipitatePageSettings {
 
-  constructor(public navCtrl: NavController) {
+  selectedCity:WeatherCity;
+
+  constructor(public navCtrl: NavController,private weatherService:WeatherServiceProvider) {
 
   }
-
+  ionViewWillEnter(){
+    this.selectedCity = this.weatherService.getSelectedCity(); 
+  }
 }

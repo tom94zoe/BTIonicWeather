@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { PercipitatePageSettings} from '../precipitate/precipitate-settings';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
+import {PercipitatePageSettings} from '../precipitate/precipitate-settings';
 import {WeatherServiceProvider} from "../../providers/weather-service/weather-service";
 import {WeatherCity} from "../../models/weather-city";
 
@@ -12,16 +12,19 @@ export class PercipitatePage {
 
   selectedCity:WeatherCity;
 
-  constructor(public navCtrl: NavController, private weatherService:WeatherServiceProvider) {
+  constructor(public navCtrl:NavController, private weatherService:WeatherServiceProvider) {
 
   }
 
-  ngOnInit(){
-    this.selectedCity = this.weatherService.getSelectedCity();
+  ngOnInit() {
     this.openSettings();
   }
 
-  openSettings(){
+  ionViewWillEnter() {
+    this.selectedCity = this.weatherService.getSelectedCity();
+  }
+
+  openSettings() {
     this.navCtrl.push(PercipitatePageSettings);
   }
 
