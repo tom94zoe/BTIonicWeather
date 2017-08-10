@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, AlertController} from 'ionic-angular';
+import {NavController, AlertController, LoadingController} from 'ionic-angular';
 import {WeatherServiceProvider} from '../../providers/weather-service/weather-service'
 import {WeatherCity} from "../../models/weather-city";
 @Component({
@@ -12,11 +12,23 @@ export class HomePage {
   filteredCities:Array<WeatherCity> = [];
   name:string;
 
-  constructor(public navCtrl:NavController, private weatherService:WeatherServiceProvider, private alertCtrl:AlertController) {
+  constructor(public navCtrl:NavController, private loadingCtrl:LoadingController, private weatherService:WeatherServiceProvider, private alertCtrl:AlertController) {
+
+  }
+
+  ngOnInit(){
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait, cities downloading...'
+    });
+    loading.present();
 
     this.weatherService.getCities().subscribe((cities:Array<WeatherCity>) => {
       this.cities = cities;
       this.filterCities(null);
+
+      setTimeout(() =>
+          loading.dismiss()
+        , 1500);
     });
   }
 

@@ -1,3 +1,16 @@
-page-precipitate {
+page-percipitate {
+  ion-label{
+    align-content: center;
+    align-items: center;
+    display: flex;
+  }
 
+}
+ion-content {
+  div.scroll-content{
+    margin-top: 44px;
+  }
+  ion-list.noMargin {
+    margin-bottom: 0 !important;
+  }
 }

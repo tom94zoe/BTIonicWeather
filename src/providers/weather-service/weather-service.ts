@@ -3,7 +3,7 @@ import { Http, URLSearchParams, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable'
 import { WeatherCity} from '../../models/weather-city'
-import { WeatherDataEntry } from '../../models/weater-data';
+import {WeatherDataEntry, RainWeatherData} from '../../models/weater-data';
 /*
   Generated class for the WeatherServiceProvider provider.
 
@@ -40,6 +40,24 @@ export class WeatherServiceProvider {
 
   getSelectedCity(): WeatherCity{
     return this.selectedCity;
+  }
+
+  getPercipitateForecast(cityId):Observable<Array<WeatherDataEntry>>{
+    let params: URLSearchParams = new URLSearchParams();
+    params.set("id", cityId);
+    params.set("appid", this.appID);
+    let requestOptions = new RequestOptions();
+    requestOptions.params = params;
+
+    return this.http.get('http://api.openweathermap.org/data/2.5/forecast?id='+cityId + '&appid=' + this.appID).map(res=>  res.json().list
+      .map((entry:WeatherDataEntry) => {
+        console.log(entry);
+        entry.date = new Date(entry.dt * 1000);
+        if(!entry.rain){
+          entry.rain = new RainWeatherData();
+        }
+        return entry;
+      }));
   }
 
   getTemperatureForecast(cityId): Observable<Array<WeatherDataEntry>>{

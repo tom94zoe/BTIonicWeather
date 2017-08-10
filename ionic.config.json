@@ -1,5 +1,5 @@
 {
   "name": "BTIonicWeather",
-  "app_id": "",
+  "app_id": "BTIonicWeatherApp",
   "type": "ionic-angular"
 }

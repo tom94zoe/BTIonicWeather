@@ -22,3 +22,15 @@ ion-header.customLayout{
     }
   }
 }
+.item-block:first-child{
+  border-top: none !important;
+}
+
+span.customFlex{
+  flex:1;
+}
+
+label.main{
+  font-weight:700;
+  margin-right:4rem;
+}

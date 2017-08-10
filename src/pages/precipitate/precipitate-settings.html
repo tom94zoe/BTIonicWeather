@@ -1,4 +1,4 @@
-<ion-header >
+<ion-header>
   <ion-navbar>
     <ion-title *ngIf="selectedCity">
       {{selectedCity.name}}
@@ -10,6 +10,55 @@
   <ion-list>
     <ion-list-header>Percipitate Settings</ion-list-header>
     <ion-item>
+      <ion-label>Activate Percipitate Slider Filter</ion-label>
+      <ion-toggle [(ngModel)]="sliderActive" ></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Percipitate Range ml/m^2</ion-label>
+      <ion-range [min]="minSliderValue" [max]="maxSliderValue" step="1" dualKnobs="true" snaps="false" pin="true"
+                 [(ngModel)]="dualPercipitateValue">
+        <ion-label range-left>{{minSliderValue|number:'2.2-2'}}</ion-label>
+        <ion-label range-right>{{maxSliderValue|number:'2.2-2'}}</ion-label>
+      </ion-range>
     </ion-item>
   </ion-list>
+
+  <ion-list radio-group [(ngModel)]="selectedDayTime" >
+    <ion-item>
+      <ion-label>Activate Daytime Filter</ion-label>
+      <ion-toggle [(ngModel)]="dayTimeFilter" [checked]="dayTimeFilter" [disabled]="customTimeFilter"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label>Day</ion-label>
+      <ion-radio value="Day" [disabled]="customTimeFilter"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Night</ion-label>
+      <ion-radio value="Night" [disabled]="customTimeFilter"></ion-radio>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Activate Custom time Filter</ion-label>
+      <ion-toggle [(ngModel)]="customTimeFilter" [checked]="customTimeFilter" [disabled]="dayTimeFilter"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>CustomFilterName</ion-label>
+      <ion-input type="tex" [(ngModel)]="customFilterName" [disabled]="dayTimeFilter"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>From</ion-label>
+      <ion-datetime displayFormat="HH:mm" [(ngModel)]="fromDate" [disabled]="dayTimeFilter"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>To</ion-label>
+      <ion-datetime displayFormat="HH:mm" [(ngModel)]="toDate" [disabled]="dayTimeFilter"></ion-datetime>
+    </ion-item>
+</ion-list>
+      <button ion-button block icon-end (click)="applyFilter()">
+        apply Filter
+        <ion-icon name="done-all"></ion-icon>
+      </button>
+
 </ion-content>

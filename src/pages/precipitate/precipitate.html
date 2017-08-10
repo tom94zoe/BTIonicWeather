@@ -4,13 +4,26 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Percipitate</ion-list-header>
+<ion-content content-top="49">
+  <ion-list class="noMargin">
+    <ion-list-header>Percipitate Actions</ion-list-header>
     <ion-item>
-      <button ion-button>
-        <ion-icon name="settings" (click)="openSettings()"></ion-icon>
+      <button ion-button block icon-end (click)="openSettings()">
+        Filter Settings
+        <ion-icon name="hammer"></ion-icon>
       </button>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list [virtualScroll]="percipitateForecast">
+    <ion-item *virtualItem="let weatherEntry">
+      <label>{{weatherEntry.date | date: 'MM/dd hh:mm' }}</label>
+      <span class="customFlex"></span>
+      <label class="main">
+        <span [hidden]="!weatherEntry.rain['3h']">{{weatherEntry.rain['3h']}} Litre/m^2
+      </span>
+      <span [hidden]="weatherEntry.rain['3h']">---</span></label>
     </ion-item>
   </ion-list>
 </ion-content>
