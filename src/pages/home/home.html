@@ -4,8 +4,8 @@
       Hi <span [hidden]="!name">, {{name}}</span>
     </h2>
     <span style="flex:1"></span>
-    <button ion-button icon-only (click)="openSettings()">
-      <ion-icon name="settings"></ion-icon>
+    <button ion-button icon-only (click)="openSettings()" style="height: 2.8rem; margin-top:1.8rem">
+      <ion-icon name="settings" style="font-size: 1.5rem"></ion-icon>
     </button>
   </div>
   <ion-searchbar (ionInput)="filterCities($event)"></ion-searchbar>
