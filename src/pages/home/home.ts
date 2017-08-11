@@ -23,8 +23,7 @@ export class HomePage {
     loading.present();
 
     this.weatherService.getCities().subscribe((cities:Array<WeatherCity>) => {
-      console.log(cities.length);
-      this.cities = cities.slice(0,100);
+      this.cities = cities;
       this.filterCities(null);
 
       setTimeout(() =>
@@ -35,11 +34,11 @@ export class HomePage {
 
   filterCities(event) {
     if (event === null || !event.target.value) {
-      this.filteredCities = this.cities;
+      this.filteredCities = this.cities.slice(0,100);
       return
     }
     this.filteredCities = this.cities.filter(city =>
-    city.name.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1);
+    city.name.toLowerCase().indexOf(event.target.value.toLowerCase()) > -1).slice(0,100);
 
     console.log(event);
   }
