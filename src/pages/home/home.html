@@ -15,8 +15,18 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list [virtualScroll]="filteredCities">
+  <!--<ion-list [virtualScroll]="filteredCities">
     <ion-item *virtualItem="let city">
+      <label>{{city.name}} - {{city.country}}</label>
+      <span style="flex:1"></span>
+      <button ion-button icon-only (click)="selectCity(city)">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
+  </ion-list>-->
+
+  <ion-list >
+    <ion-item *ngFor="let city of filteredCities">
       <label>{{city.name}} - {{city.country}}</label>
       <span style="flex:1"></span>
       <button ion-button icon-only (click)="selectCity(city)">

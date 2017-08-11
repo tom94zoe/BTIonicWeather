@@ -16,12 +16,12 @@
 
   </ion-list>
 
-  <ion-list [virtualScroll]="percipitateForecast">
-    <ion-item *virtualItem="let weatherEntry">
+  <ion-list>
+    <ion-item *ngFor="let weatherEntry of percipitateForecast">
       <label>{{weatherEntry.date | date: 'MM/dd hh:mm' }}</label>
       <span class="customFlex"></span>
       <label class="main">
-        <span [hidden]="!weatherEntry.rain['3h']">{{weatherEntry.rain['3h']}} Litre/m^2
+        <span [hidden]="!weatherEntry.rain['3h']">{{weatherEntry.rain['3h']|number:'1.2-4'}} Litre/m^2
       </span>
       <span [hidden]="weatherEntry.rain['3h']">---</span></label>
     </ion-item>

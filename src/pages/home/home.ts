@@ -23,7 +23,8 @@ export class HomePage {
     loading.present();
 
     this.weatherService.getCities().subscribe((cities:Array<WeatherCity>) => {
-      this.cities = cities;
+      console.log(cities.length);
+      this.cities = cities.slice(0,100);
       this.filterCities(null);
 
       setTimeout(() =>
